@@ -1,5 +1,5 @@
 [package]
-name = "jsonrpc"
+name = "rjsonrpc"
 version = "0.14.0"
 authors = ["Andrew Poelstra <apoelstra@wpsoftware.net>"]
 license = "CC0-1.0"
@@ -12,7 +12,7 @@ readme	 = "README.md"
 edition = "2018"
 
 [lib]
-name = "jsonrpc"
+name = "rjsonrpc"
 path = "src/lib.rs"
 
 [features]
