@@ -136,6 +136,8 @@ pub enum StandardError {
 #[derive(Clone, Debug, Deserialize, Serialize)]
 /// A JSONRPC error object
 pub struct RpcError {
+    /// The id of Request.
+    pub id: Option<String>,
     /// The integer identifier of the error
     pub code: i32,
     /// A string describing the error
@@ -146,31 +148,37 @@ pub struct RpcError {
 
 /// Create a standard error responses
 pub fn standard_error(
+    id: Option<String>,
     code: StandardError,
     data: Option<Box<serde_json::value::RawValue>>,
 ) -> RpcError {
     match code {
         StandardError::ParseError => RpcError {
+            id,
             code: -32700,
             message: "Parse error".to_string(),
             data,
         },
         StandardError::InvalidRequest => RpcError {
+            id,
             code: -32600,
             message: "Invalid Request".to_string(),
             data,
         },
         StandardError::MethodNotFound => RpcError {
+            id,
             code: -32601,
             message: "Method not found".to_string(),
             data,
         },
         StandardError::InvalidParams => RpcError {
+            id,
             code: -32602,
             message: "Invalid params".to_string(),
             data,
         },
         StandardError::InternalError => RpcError {
+            id,
             code: -32603,
             message: "Internal error".to_string(),
             data,
